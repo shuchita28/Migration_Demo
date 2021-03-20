@@ -1,0 +1,137 @@
+Account Number,Status,Error Message,Last Migration Date,
+735814203,SUCCESS,"
+",2021-02-04T13:04:23.113,
+259889114,SUCCESS,"
+",2021-02-04T13:04:20.186,
+1131108569,FAILURE,"Account 1131108569 status is Delinquent, will not migrate account",2021-02-04T13:04:18.242,
+706330684,FAILURE,"Account 706330684 status is Delinquent, will not migrate account",2021-02-04T13:04:18.058,
+543024745,FAILURE,"Account 543024745 status is Delinquent, will not migrate account",2021-02-04T13:04:17.905,
+416997269,SUCCESS,"
+",2021-02-04T13:04:16.589,
+438589687,SUCCESS,"
+",2021-02-04T13:04:13.584,
+123907504,FAILURE,"Account 123907504 status is Delinquent, will not migrate account",2021-02-04T13:04:11.619,
+598508100,FAILURE,Error migrating account 598508100 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 598508100 MDC:69965427975660_1612443701731947,2021-02-04T13:04:11.359,
+156959052,FAILURE,"Account 156959052 status is Delinquent, will not migrate account",2021-02-04T13:04:11.090,
+515799583,SUCCESS,"
+",2021-02-04T13:04:09.939,
+363655729,SUCCESS,"
+",2021-02-04T13:04:07.128,
+1525503442,FAILURE,"Member not approved, will not migrate at this time. userId 20890101 legacyUserId 3023139464 status unconfirmed_zipcard MDC:69965427975660_1612443701731947",2021-02-04T13:04:05.142,
+387236473,FAILURE,Error migrating account 387236473 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 387236473 MDC:69965427975660_1612443701731947,2021-02-04T13:04:03.644,
+606042340,SUCCESS,"
+",2021-02-04T13:04:02.296,
+453253544,SUCCESS,"
+",2021-02-04T13:03:59.489,
+2747934254,SUCCESS,"
+",2021-02-04T13:03:56.685,
+2112806603,FAILURE,"Account 2112806603 status is Delinquent, will not migrate account",2021-02-04T13:03:54.872,
+1724433014,FAILURE,Error migrating account 1724433014 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 1724433014 MDC:69965427975660_1612443701731947,2021-02-04T13:03:54.714,
+353272559,SUCCESS,"
+",2021-02-04T13:03:52.630,
+717141755,FAILURE,Error migrating account 717141755 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 717141755 MDC:69965427975660_1612443701731947,2021-02-04T13:03:49.128,
+770745853,FAILURE,"Account 770745853 status is Delinquent, will not migrate account",2021-02-04T13:03:48.902,
+1482872188,FAILURE,"Account 1482872188 status is Delinquent, will not migrate account",2021-02-04T13:03:48.679,
+80721940,FAILURE,"Account 80721940 status is Delinquent, will not migrate account",2021-02-04T13:03:48.528,
+2319427346,FAILURE,Error migrating user 18254096 to account 2319427346 due to: members_user_not_found: invalid user response from members for 18254096 MDC:69965427975660_1612443701731947,2021-02-04T13:03:48.322,
+2034317349,FAILURE,Error migrating account 2034317349 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 2034317349 MDC:69965427975660_1612443701731947,2021-02-04T13:03:47.033,
+655264855,FAILURE,Error migrating account 655264855 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 655264855 MDC:69965427975660_1612443701731947,2021-02-04T13:03:46.839,
+41387336,FAILURE,"Account 41387336 status is Delinquent, will not migrate account",2021-02-04T13:03:46.618,
+748163299,SUCCESS,"
+",2021-02-04T13:03:45.350,
+105269988,SUCCESS,"
+",2021-02-04T13:03:42.507,
+1041260585,FAILURE,"Account 1041260585 status is Delinquent, will not migrate account",2021-02-04T13:03:40.781,
+728577703,FAILURE,Error migrating account 728577703 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 728577703 MDC:69965427975660_1612443701731947,2021-02-04T13:03:40.627,
+644733359,FAILURE,"Account 644733359 status is Delinquent, will not migrate account",2021-02-04T13:03:40.420,
+50377141,SUCCESS,"
+",2021-02-04T13:03:39.140,
+1102695950,FAILURE,"Account 1102695950 status is Delinquent, will not migrate account",2021-02-04T13:03:37.161,
+2379219744,SUCCESS,"
+",2021-02-04T13:03:36.062,
+445229105,FAILURE,"Account 445229105 status is Delinquent, will not migrate account",2021-02-04T13:03:33.691,
+703806203,FAILURE,Error migrating account 703806203 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 703806203 MDC:69965427975660_1612443701731947,2021-02-04T13:03:33.495,
+72639917,SUCCESS,"
+",2021-02-04T13:03:32.068,
+106175626,FAILURE,Error migrating account 106175626 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 106175626 MDC:69965427975660_1612443701731947,2021-02-04T13:03:30.284,
+205656576,SUCCESS,"
+",2021-02-04T13:03:28.966,
+351567774,FAILURE,Error migrating account 351567774 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 351567774 MDC:69965427975660_1612443701731947,2021-02-04T13:03:27.008,
+174259092,FAILURE,Error migrating account 174259092 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 174259092 MDC:69965427975660_1612443701731947,2021-02-04T13:03:26.802,
+2420416322,FAILURE,"Member not approved, will not migrate at this time. userId 17776275 legacyUserId 2420414000 status billing_expired MDC:69965427975660_1612443701731947",2021-02-04T13:03:26.573,
+1980770470,FAILURE,Error migrating user 20907383 to account 1980770470 due to: illegal_argument: membership/user/migrate >> Missing 'user_start_date' MDC:69965427975660_1612443701731947,2021-02-04T13:03:26.023,
+1646575023,FAILURE,"Account 1646575023 status is Delinquent, will not migrate account",2021-02-04T13:03:23.960,
+1861289773,FAILURE,Error migrating account 1861289773 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 1861289773 MDC:69965427975660_1612443701731947,2021-02-04T13:03:23.813,
+513689409,FAILURE,"Account 513689409 status is Delinquent, will not migrate account",2021-02-04T13:03:23.638,
+515847430,SUCCESS,"
+",2021-02-04T13:03:22.265,
+805430000,FAILURE,"Account 805430000 status is Delinquent, will not migrate account",2021-02-04T13:03:20.027,
+121035787,SUCCESS,"
+",2021-02-04T13:03:18.793,
+2228010375,FAILURE,Error migrating account 2228010375 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 2228010375 MDC:69965427975660_1612443701731947,2021-02-04T13:03:16.975,
+2352121171,FAILURE,"Account 2352121171 status is Delinquent, will not migrate account",2021-02-04T13:03:16.811,
+2513435288,SUCCESS,"
+",2021-02-04T13:03:15.564,
+2476680186,FAILURE,Error migrating account 2476680186 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 2476680186 MDC:69965427975660_1612443701731947,2021-02-04T13:03:13.546,
+591747254,FAILURE,"Account 591747254 status is Delinquent, will not migrate account",2021-02-04T13:03:13.379,
+539730642,SUCCESS,"
+",2021-02-04T13:03:12.184,
+2548388974,FAILURE,"Account 2548388974 status is Delinquent, will not migrate account",2021-02-04T13:03:10.244,
+629483652,SUCCESS,"
+",2021-02-04T13:03:08.200,
+2617994439,FAILURE,"Account 2617994439 status is Delinquent, will not migrate account",2021-02-04T13:03:06.284,
+524727212,SUCCESS,"
+",2021-02-04T13:03:04.467,
+2069189079,FAILURE,Error migrating user 18491866 to account 2069189079 due to: members_user_not_found: invalid user response from members for 18491866 MDC:69965427975660_1612443701731947,2021-02-04T13:03:02.618,
+35359191,SUCCESS,"
+",2021-02-04T13:03:00.379,
+249385483,FAILURE,Error migrating user 18602030 to account 249385483 due to: members_user_not_found: invalid user response from members for 18602030 MDC:69965427975660_1612443701731947,2021-02-04T13:02:57.719,
+2370474214,FAILURE,"Account 2370474214 status is Delinquent, will not migrate account",2021-02-04T13:02:56.251,
+707041768,SUCCESS,"
+",2021-02-04T13:02:55.136,
+876709466,FAILURE,"Member not approved, will not migrate at this time. userId 19755227 legacyUserId 876699219 status unconfirmed_zipcard MDC:69965427975660_1612443701731947",2021-02-04T13:02:53.399,
+2487942977,SUCCESS,"
+",2021-02-04T13:02:51.921,
+1741518,FAILURE,Error migrating account 1741518 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 1741518 MDC:69965427975660_1612443701731947,2021-02-04T13:02:50.074,
+2529333955,FAILURE,"Account 2529333955 status is Frozen, will not migrate account",2021-02-04T13:02:49.759,
+596818924,FAILURE,"Account 596818924 status is Delinquent, will not migrate account",2021-02-04T13:02:49.716,
+156605196,FAILURE,"Account 156605196 status is Delinquent, will not migrate account",2021-02-04T13:02:49.550,
+813406447,FAILURE,"Account 813406447 status is Delinquent, will not migrate account",2021-02-04T13:02:49.325,
+1599029361,FAILURE,"Member not approved, will not migrate at this time. userId 20907382 legacyUserId 1597865068 status billing_expired MDC:69965427975660_1612443701731947",2021-02-04T13:02:49.110,
+2462588393,FAILURE,"Account 2462588393 status is Delinquent, will not migrate account",2021-02-04T13:02:47.759,
+509400947,FAILURE,Error migrating account 509400947 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 509400947 MDC:69965427975660_1612443701731947,2021-02-04T13:02:47.623,
+419042202,SUCCESS,"
+",2021-02-04T13:02:46.360,
+6234473,SUCCESS,"
+",2021-02-04T13:02:43.600,
+604767270,FAILURE,Error migrating account 604767270 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 604767270 MDC:69965427975660_1612443701731947,2021-02-04T13:02:41.689,
+561062178,SUCCESS,"
+",2021-02-04T13:02:40.426,
+2936309,SUCCESS,"
+",2021-02-04T13:02:37.509,
+1140492362,FAILURE,Error migrating account 1140492362 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 1140492362 MDC:69965427975660_1612443701731947,2021-02-04T13:02:35.548,
+542763446,SUCCESS,"
+",2021-02-04T13:02:34.278,
+413947101,SUCCESS,"
+",2021-02-04T13:02:30.588,
+621154946,SUCCESS,"
+",2021-02-04T13:02:26.383,
+545943683,FAILURE,"Account 545943683 status is Delinquent, will not migrate account",2021-02-04T13:02:24.600,
+350019704,SUCCESS,"
+",2021-02-04T13:02:23.418,
+2287837522,FAILURE,Error migrating account 2287837522 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 2287837522 MDC:69965427975660_1612443701731947,2021-02-04T13:02:21.581,
+730387862,FAILURE,"Account 730387862 status is Delinquent, will not migrate account",2021-02-04T13:02:21.385,
+731861154,FAILURE,"Account 731861154 status is Delinquent, will not migrate account",2021-02-04T13:02:21.210,
+233626126,SUCCESS,"
+",2021-02-04T13:02:19.961,
+146501757,SUCCESS,"
+",2021-02-04T13:02:17.047,
+400251203,FAILURE,Error migrating account 400251203 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 400251203 MDC:69965427975660_1612443701731947,2021-02-04T13:02:15.176,
+358603870,FAILURE,Error migrating account 358603870 to membership due to: membership_details_not_found: Unable to retrieve membership details for account with number 358603870 MDC:69965427975660_1612443701731947,2021-02-04T13:02:14.963,
+59057789,SUCCESS,"
+",2021-02-04T13:02:13.684,
+814622733,SUCCESS,"
+",2021-02-04T13:02:10.792,
+606314921,FAILURE,"Account 606314921 status is Delinquent, will not migrate account",2021-02-04T13:02:08.833,
+2530814586,FAILURE,"Member not approved, will not migrate at this time. userId 18721524 legacyUserId 2376009821 status suspended MDC:69965427975660_1612443701731947",2021-02-04T13:02:08.629,
+537723385,FAILURE,"Account 537723385 status is Account Closed, will not migrate account",2021-02-04T13:02:07.972,
