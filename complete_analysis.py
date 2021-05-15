@@ -1,7 +1,9 @@
 import matplotlib.pyplot as pt
 import pandas as pd
 
-data = pd.read_csv('/Users/shuchitamishra/Desktop/Prod-Migration/Cron Job 19_03-Table 1.csv')
+n = input("Enter the path of your .csv file : ")
+
+data = pd.read_csv(n)
 
 result = data.groupby('Status')['Status'].count()
 
