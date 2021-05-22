@@ -1,82 +1,141 @@
 import matplotlib.pyplot as pt
 import pandas as pd
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+pd.set_option('display.width', 10000)
+
 n = input("Enter the path of your .csv file : ")
 
 data = pd.read_csv(n)
 
+def find_count(keyword,data_set):
+    count_c = len(data_set[(data_set.status == keyword)])
+    return count_c
+
+Success = find_count("SUCCESS",data)
+Skipped = find_count("SKIPPED",data)
+Failure = find_count("FAILURE",data)
+In_Progress = find_count("IN_PROGRESS",data)
+
+l_status = [Success,Failure,Skipped,In_Progress]
+l_status = [i for i in l_status if i!=0]
+
+#groupBy the data into Success, Failure and Skipped categories
 result = data.groupby('Status')['Status'].count()
 
-print("Total attempted: ",len(data))
-print("---------------------------------------------------------------------------------")
-print(result)
-print("---------------------------------------------------------------------------------")
+def total_count (data_frame):
+    total = len(data_frame)
+    return total
 
+def name_columns(data_frame):
+    data_frame.columns = ['account_number', 'Status', 'error_msg', 'Last Migration Date']
 
+#display the total analysis
+def print_analysis(t,r):
+    print()
+    print()
+    print("Total number of accounts : ",t)
+    print("--------------------------------------------------------------------------------------")
+    print(r)
+    print("--------------------------------------------------------------------------------------")
+
+print_analysis(total_count(data),result)
+
+#create separate dataframe for Failure cases to analyse them further
 data2 = data[(data.Status == "FAILURE")]
+#data2.columns = ['account_number', 'Status', 'error_msg', 'Last Migration Date']
+name_columns(data2)
 
-data2.columns = ['account_number', 'Status', 'error_msg', 'Last Migration Date',
-       'Unnamed: 4']
-print()
-print()
-#print("Failed accounts: ")
-#print("---------------------------------------------------------------------------------")
-#print(data2)
-#print("---------------------------------------------------------------------------------")
-print()
-print()
-total = len(data2)
+#create a separate dataframe for Skipped cases to analyse them further
+data3 = data[(data.status == "SKIPPED")]
+#data3.columns = ['account_number', 'Status', 'error_msg', 'Last Migration Date']
+name_columns(data3)
 
-interrupted_error    = data2.error_msg.str.count("interrupted")
-interrupted_error.index = data2.account_number
-interrupted_error = interrupted_error[interrupted_error!=0]
-#print(interrupted_error)
-flagie = interrupted_error.index.tolist()
+#Get the total no. of Failed accounts
+total_f = total_count(data2)
 
-rb_info    = data2.error_msg.str.count("RollBackInfo")
-rb_info.index = data2.account_number
-rb_info = rb_info[rb_info!=0]
-#print(interrupted_error)
-flagrb = rb_info.index.tolist()
+#Get the total no. of Skipped accounts
+total_s = total_count(data3)
 
-frs    = data2.error_msg.str.count("forced_reset_status")
-frs.index = data2.account_number
-frs = frs[frs!=0]
-#print(interrupted_error)
-flagfrs = frs.index.tolist()
+#Create a list of all the known/major Failed reasons (this part needs Optimization)
+e1 = ['interrupted',
+      'RollBackInfo',
+      'forced_reset_status',
+      "Missing 'market_id'",
+      "Missing 'rate_plan_key'",
+      "Missing 'user_start_date'",
+      'missing_key',
+      'membership_details_not_found',
+      'members_user_not_found',
+      'core-api',
+      'CHANGE_AUTH_ID',
+      'membership_next_charge_date'
+      ]
 
-mkid    = data2.error_msg.str.count("Missing 'market_id'")
-mkid.index = data2.account_number
-mkid = mkid[mkid!=0]
-#print(interrupted_error)
-flagmkid = mkid.index.tolist()
+#Create a list of all the known/major Skipped reasons (this part needs Optimization)
+s1 = ['Delinquent',
+      'NPO',
+      'payment',
+      'getOpt',
+      'no equivalent NP mapping',
+      'active on multiple accounts',
+      'Account Closed',
+      'zipfleet',
+      'remaining balance',
+      'unmapped_cp_rate_plan',
+      'SUSPENDED',
+      "Missing key 'plan_key'",
+      'on_account_status',
+      'needs approval',
+      'coreApiService',
+      'applied',
+      'BANNED',
+      "Couldn't find Driver",
+      'no active users'
+      ]
 
-mskey    = data2.error_msg.str.count("missing_key")
-mskey.index = data2.account_number
-mskey = mskey[mskey!=0]
-#print(interrupted_error)
-flagmskey = mskey.index.tolist()
 
-interrupted_error    = data2.error_msg.str.count("interrupted").sum()
-RollBack_error       = data2.error_msg.str.count("RollBackInfo").sum()
-forced_reset_error   = data2.error_msg.str.count("forced_reset_status").sum()
-market_id_error      = data2.error_msg.str.count("Missing 'market_id'").sum()
-missing_key_error    = data2.error_msg.str.count("missing_key").sum()
+def do_analysis(reasons,data_frame):
+    #Initialize list of count of each type of reason
+    e2 = []
+    #Initialize list of account_ids for each type of reason
+    e3 = []
+    #Loop over reasons in order to:
+    #A. Find the count of each error_type seen in Failure/Skipped category
+    #B. Pick out some account_ids for analysis on QAWEB1
+    for i in reasons:
+        a = data_frame.error_msg.str.count(i).sum()
+        e2.append(a)
+        b = data_frame.error_msg.str.count(i)
+        b.index = data_frame.account_number
+        b = b[b!=0]
+        c = b.index.tolist()
+        e3.append(c)
+    #Count no. of unspecified errors
+    other_errors = total_count(data_frame)-(sum(e2))
+    #Make e1,e2,e3 all into a nice table format
+    errors = pd.DataFrame(list(zip(reasons,e2,e3)))
+    errors.columns = ['error_type','Count','Account_id']
+    #Skip out the zero values (if the particular error_type did not occur at all, we need
+    #not display it
+    values1 = errors[(errors.Count != 0)]
+    a_result = values1.sort_values(by=['Count'], ascending = False)
+    print(a_result)
+    print("Other errors : ",other_errors)
+    print("---------------------------------------------------------------------------------")
 
-other_errors         = total-(interrupted_error+RollBack_error+forced_reset_error+market_id_error+missing_key_error)
-
-print("Total number of Failed accounts:", total)
+#Outside the function, display Total Failed accounts
+print("Total number of Failed accounts:", total_f)
 print("---------------------------------------------------------------------------------")
+do_analysis(e1,data2)
 
-e1 = ['interrupted_error','RollBackInfo_error','forced_reset_error','market_id_error', 'missing_key_error','Other']
-e2 = [interrupted_error,RollBack_error,forced_reset_error,market_id_error, missing_key_error,other_errors]
-e3 = [flagie , flagrb , flagfrs , flagmkid , flagmskey]
-
-errors = pd.DataFrame(list(zip(e1,e2,e3)))
-errors.columns = ['error_type','Count','Examples']
-values1 = errors[(errors.Count != 0)]
-print(values1)
+#Outside the function, display Total Skipped accounts
+print()
+print()
+print("Total number of Skipped accounts:", total_s)
 print("---------------------------------------------------------------------------------")
+do_analysis(s1,data3)
 
 """
 values1 = errors[(errors.Count != 0)]
@@ -97,30 +156,26 @@ labels = labels.to_list()
 print(labels)
 """
 
-fig, (totalpt,failurept) = pt.subplots(1,2, figsize=(15,10))
-#pt.set_title('Results of Analysis')
+pt.axis('equal')
 
-#pt.figure(0)
-labels = ['Failure','Skipped','Success']
-#print(type(labels))
-colors = ['red','yellow','green']
-values = result
-#print(type(values))
-totalpt.pie(values,labels = labels, colors = colors, autopct='%1.1f%%')
-totalpt.title.set_text('Total Accounts Analysis')
-
-#pt.figure(1)
-#sizes,labels = [i[1] for i in errors], [i[0] for i in errors]
-#values1 = errors[(errors.Count != 0)]
-#values = values1.iloc[:,0]
-values = values1['Count']
-values = values.to_list()
-#print(type(values))
-labels = values1['error_type']
-labels = labels.to_list()
-#print(type(labels))
-#sizes_to_plot = sizes.loc[lambda df: df['score'] == 0]
-failurept.pie(values, labels = labels, autopct='%1.1f%%')
-failurept.title.set_text('Failed Accounts Analysis')
-
-pt.show()
+if((len(l_status))==2):
+    pt.pie(
+        l_status,
+        colors=['green', 'yellow'],
+        autopct='%1.1f%%')
+    pt.legend(title='Migration',labels = ['SUCCESS', 'SKIPPED'])
+    pt.show()
+if((len(l_status))==3):
+    pt.pie(
+        l_status,
+        colors=['green', 'red', 'yellow'],
+        autopct='%1.1f%%')
+    pt.legend(title='Migration',labels = ['SUCCESS', 'FAILURE' , 'SKIPPED'])
+    pt.show()
+else:
+    pt.pie(
+        l_status,
+        colors=['green', 'red', 'yellow','BLUE'],
+        autopct='%1.1f%%')
+    pt.legend(title='Migration',labels = ['SUCCESS', 'FAILURE' , 'SKIPPED', 'IN_PROGRESS'])
+    pt.show()
