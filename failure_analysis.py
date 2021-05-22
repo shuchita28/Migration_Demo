@@ -27,7 +27,9 @@ e1 = ['interrupted',
       'members_user_not_found',
       'core-api',
       'CHANGE_AUTH_ID',
-      "Missing 'membership_next_charge_date'"
+      "Missing 'membership_next_charge_date'",
+      "Missing key 'user'",
+      'billing_expired'
       ]
 
 e2 = []
@@ -84,7 +86,53 @@ values = filtered_errors['Count']
 values = values.to_list()
 labels = filtered_errors['error_type']
 labels = labels.to_list()
-pt.pie(values, labels = labels, autopct='%1.1f%%')
-pt.title('Failed Accounts Analysis')
 
+# creating the bar plot
+#Figure size
+fig , ax = pt.subplots(figsize = (16, 9))
+
+width = 0.3
+#Horizontal Bar Plot
+ax.barh(labels , values , width)
+
+#splines removed
+for s in ['top' , 'bottom' , 'left' , 'right']:
+    ax.spines[s].set_visible(False)
+
+# Remove x, y Ticks
+ax.xaxis.set_ticks_position('none')
+ax.yaxis.set_ticks_position('none')
+
+
+# Add x, y gridlines
+ax.grid(b = True, color ='grey',
+        linestyle ='-.', linewidth = 0.5,
+        alpha = 0.2)
+# Add padding between axes and labels
+ax.xaxis.set_tick_params(pad = 10)
+ax.yaxis.set_tick_params(pad = 10)
+
+# Show top values
+ax.invert_yaxis()
+
+# Add annotation to bars
+for i in ax.patches:
+    pt.text(i.get_width()+0.2,
+            i.get_y()+0.2,
+            str(round((i.get_width()), 1)),
+            fontsize = 10,
+            fontweight ='bold',
+            color ='grey')
+
+# Add Plot Title
+ax.set_title('Account failure reasons')
+
+# Add Text watermark
+fig.text(0.9, 0.15, 'QA @ Zipcar, Inc.', fontsize = 12,
+         color ='green', ha ='right', va ='bottom',
+         alpha = 0.7)
+
+#reduce padding
+pt.tight_layout()
+# Show Plot
 pt.show()
