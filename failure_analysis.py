@@ -5,13 +5,19 @@ pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
-data = pd.read_csv('<filename.csv>')
+def find_error_in_df(df,acct):
+    presentCheck = df[df['account_number']==acct].index.values.astype(int)[0]
+    print(df.loc[presentCheck,['error_msg']])
 
 def Diff(li1, li2):
     li_dif = [i for i in li1 + li2 if i not in li1 or i not in li2]
     return li_dif
 
+#take the .csv file as an input from the user
+csv_path = input("Enter the path of your .csv file : ")
 
+#read the .csv file
+data = pd.read_csv(csv_path)
 data2 = data[(data.status == "FAILURE")]
 data2.columns = ['account_number', 'Status', 'error_msg', 'Last Migration Date']
 total = len(data2)
@@ -29,8 +35,12 @@ e1 = ['interrupted',
       'CHANGE_AUTH_ID',
       "Missing 'membership_next_charge_date'",
       "Missing key 'user'",
-      'billing_expired'
-      ]
+      'billing_expired',
+      'import-user',
+      'DELETE_UNAUTHORIZED_DEVICES',
+#      'retrieve legacy user',
+      'account credit'
+     ]
 
 e2 = []
 e3 = []
@@ -42,8 +52,6 @@ print(type(e4))
 print("This is e4 ***",e4,"***End of e4")
 """
 e5 = []
-#total = len(data)
-#print(total)
 
 for i in e1:
     a = data2.error_msg.str.count(i).sum()
@@ -62,9 +70,9 @@ for i in e1:
 other_errors = total-(sum(e2))
 
 
-print("---------------------------------------------------------------------------------")
+print("-----------------------------------------------------------------------------------------------------")
 print("Total number of Failed accounts:", total)
-print("---------------------------------------------------------------------------------")
+print("-----------------------------------------------------------------------------------------------------")
 
 
 errors = pd.DataFrame(list(zip(e1,e2,e3)))
@@ -72,21 +80,33 @@ errors.columns = ['error_type','Count','Account_id']
 filtered_errors = errors[(errors.Count != 0)]
 
 print(filtered_errors)
-print('Other errors       ',other_errors)
+if(other_errors>=0):
+    print('New errors       ',other_errors)
 #print("---------------------------------------------------------------------------------")
 #print(e3)
 
-#For debugging purposes
-li3 = Diff(e4,e5)
-print("The difference comes in >> ",len(li3)," accounts")
-print(li3)
 
+li3 = Diff(e4, e5)
+print("These accounts failed due to some new error:")
+print(li3)
+print(len(li3))
+
+for i in li3:
+#   print(i)
+    find_error_in_df(data2,i)
 
 values = filtered_errors['Count']
 values = values.to_list()
+#print(type(values))
 labels = filtered_errors['error_type']
 labels = labels.to_list()
+#print(type(labels))
+"""
+pt.pie(values, labels = labels, autopct='%1.1f%%')
+pt.title('Failed Accounts Analysis')
 
+pt.show()
+"""
 # creating the bar plot
 #Figure size
 fig , ax = pt.subplots(figsize = (16, 9))
@@ -136,3 +156,13 @@ fig.text(0.9, 0.15, 'QA @ Zipcar, Inc.', fontsize = 12,
 pt.tight_layout()
 # Show Plot
 pt.show()
+
+"""
+pt.bar(labels, values, color ='maroon',
+        width = 0.4)
+
+pt.xlabel("Error Types")
+pt.ylabel("No. of accounts failed")
+pt.title("Account failure reasons")
+pt.show()
+"""
